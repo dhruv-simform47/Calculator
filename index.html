@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Calculator</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/10310/10310245.png">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .calculator {
+        height: 60vh;
+        width: 350px;
+        margin-top: 5%;
+        justify-self: center;
+        background-color: rgba(58, 58, 45, 0.603);
+        border: 1px solid black;
+    }
+
+    .screenDiv {
+        width: 100%;
+        height: 15%;
+        /* border:1px solid grey; */
+    }
+
+    #screen {
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        font-size: 3.2rem;
+        padding: 5px 5px;
+
+    }
+
+    .functions {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 85%;
+    }
+
+    .functions div {
+        /* border: 1px solid grey; */
+        display: flex;
+        flex: 1;
+    }
+.arith
+    {
+        font-size:2rem;
+    }
+    .row button {
+        flex: 1;
+        margin: 2px;
+        font-size:larger;
+        font-family: monospace;
+        border:1px solid rgba(128, 128, 128, 0.185);
+        border-radius: 10px;
+        
+    }
+    .row button:hover{
+        outline:2px solid rgba(184, 224, 241, 0.795);
+    }
+
+    .num
+    {
+        font-weight: bolder;
+        background-color: rgb(255, 233, 200);
+    }
+    
+</style>
+
+<body>
+
+
+    <div class="calculator">
+        <div class="screenDiv">
+            <input type="text" name="screen" dir="rtl" id="screen" a utofocus="off">
+        </div>
+        <div class="functions">
+            <div class="row row1">
+                <button class="btncalc bold">
+                    DEG
+                </button>
+                <button class="btncalc bold">
+                    F-E
+                </button> 
+            </div>
+            <div class="row row2">
+                <button class="btncalc">
+                    MC
+                </button>
+                <button class="btncalc">
+                    MR
+                </button>
+                <button class="btncalc">
+                    M+
+                </button>
+                <button class="btncalc">
+                    M-
+                </button>
+                <button class="btncalc">
+                    MS
+                </button>
+             </div>
+            <div class="row row1">
+                <button class="btncalc">
+                    &#9727;	Trignometry
+                </button>
+                <button class="btncalc">
+                    <span><i class="fa-solid fa-florin-sign"></i></span> Function
+                </button> 
+            </div>
+            <div class="row row2">
+                <button class="btncalc">
+                    2<sup>nd</sup>
+                </button>
+                <button class="btncalc">
+                    &pi;
+                </button>
+                <button class="btncalc">
+                    e
+                </button>
+                <button class="btncalc">
+                    C
+                </button>
+                <button class="btncalc">
+                    <i class="fa-solid fa-delete-left"></i>
+                </button>
+             </div>
+             <div class="row row2">
+                <button class="btncalc">
+                    X<sup>2</sup>
+                </button>
+                <button class="btncalc">
+                    1/<i>x</i>
+                </button>
+                <button class="btncalc">
+                    |x|
+                </button>
+                <button class="btncalc">
+                    exp
+                </button>
+                <button class="btncalc">
+                    mod
+                </button>
+             </div>
+             <div class="row row2">
+                <button class="btncalc">
+                    <sup>2</sup>&radic;x
+                </button>
+                <button class="btncalc">
+                    &lpar;
+                </button>
+                <button class="btncalc">
+                    &rpar;
+                </button>
+                <button class="btncalc">
+                    n! 
+                </button>
+                <button class="btncalc arith">
+                    &divide;
+                </button>
+             </div>
+             <div class="row row2">
+                <button class="btncalc">
+                    x<sup><i>y</i></sup>
+                </button>
+                <button class="btncalc num">
+                    7
+                </button>
+                <button class="btncalc num">
+                    8
+                </button>
+                <button class="btncalc num">
+                    9
+                </button>
+                <button class="btncalc arith">
+                    &times;
+                </button>
+             </div>
+             <div class="row row2">
+                <button class="btncalc">
+                    10<sup>x</sup>
+                </button>
+                <button class="btncalc num">
+                    4
+                </button>
+                <button class="btncalc num">
+                    5
+                </button>
+                <button class="btncalc num">
+                    6
+                </button>
+                <button class="btncalc arith">
+                    -
+                </button>
+             </div>
+             <div class="row row2">
+                <button class="btncalc">
+                    log
+                </button>
+                <button class="btncalc num">
+                    1
+                </button>
+                <button class="btncalc num">
+                    2
+                </button>
+                <button class="btncalc num">
+                    3
+                </button>
+                <button class="btncalc arith">
+                    +
+                </button>
+             </div>
+             <div class="row row2">
+                <button class="btncalc">
+                    ln
+                </button>
+                <button class="btncalc">
+                    <b><sup>+</sup>/<sub>-</sub></b>
+                </button>
+                <button class="btncalc num">
+                    0
+                </button>
+                <button class="btncalc">
+                    . 
+                </button>
+                <button class="btncalc equal arith">
+                    =
+                </button>
+             </div>
+            
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
