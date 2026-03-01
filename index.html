@@ -18,10 +18,10 @@
 
     <div class="calculator">
         <div class="screenDiv">
-           <div class="expression"> <input type="text" name="screen" dir="rtl" id="screenExpression" ></div>
-            <div class="output"><input type="text" name="screen" dir="rtl" id="screenOutput" ></div>
+           <div class="expression"> <input type="text" name="screen"  readonly id="screenExpression" ></div>
+            <div class="output"><input type="text" name="screen" readonly id="screenOutput" ></div>
         </div>
-        <div class="button-area">
+        <div class="button-area" id="button-area">
             <div class="row row1">
                 <button class="btncalc naviBlue  bold" value="DEG">
                     DEG
@@ -89,10 +89,10 @@
                 <button class="btncalc lightBlue" value="e">
                     e
                 </button>
-                <button class="btncalc lightBlue" value="C">
+                <button class="btncalc lightBlue" value="Delete">
                     C
                 </button>
-                <button class="btncalc lightBlue" value="rmv">
+                <button class="btncalc lightBlue" value="Backspace">
                     <i class="fa-solid fa-delete-left"></i>
                 </button>
              </div>
@@ -126,7 +126,7 @@
                 <button class="btncalc lightBlue" value="factorial">
                     n! 
                 </button>
-                <button class="btncalc arith" value="divide">
+                <button class="btncalc arith" value="/">
                     &divide;
                 </button>
              </div>
@@ -143,7 +143,7 @@
                 <button class="btncalc num" value="9">
                     9
                 </button>
-                <button class="btncalc arith" value="mul">
+                <button class="btncalc arith" name="mul" value="*">
                     &times;
                 </button>
              </div>
@@ -160,7 +160,7 @@
                 <button class="btncalc num" value="6">
                     6
                 </button>
-                <button class="btncalc arith" value="minus">
+                <button class="btncalc arith" value="-">
                     -
                 </button>
              </div>
@@ -177,7 +177,7 @@
                 <button class="btncalc num" value="3">
                     3
                 </button>
-                <button class="btncalc arith" value="plus">
+                <button class="btncalc arith" value="+">
                     +
                 </button>
              </div>
@@ -194,7 +194,7 @@
                 <button class="btncalc lightBlue" value=".">
                     . 
                 </button>
-                <button class="btncalc equal arith" value="equal">
+                <button class="btncalc equal arith" value="Enter">
                     =
                 </button>
              </div>
@@ -205,7 +205,7 @@
 
 
 
-<script type="module" src="js/main.js"></script>
+<script type="module" src="js/main.js" defer></script>
 
 
 </body>
