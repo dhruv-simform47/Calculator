@@ -1,11 +1,15 @@
 import { toggleFunc, toggleTrigno } from "./ui.js";
+import { isNumber,isOperator } from "./utils.js";
+import { Calculator } from "./model.js";
+import { createHistory } from "./history.js";
 
-let expr = "";
+
 const scr_exp = document.getElementById("screenExpression");
 const scr_out = document.getElementById("screenOutput");
-let isEvalutaed = false;
+const history=createHistory();
 
 
+const calc=new Calculator();
 
 function initSetUp() {
   const trigno = document.getElementById("trignoFun");
@@ -19,164 +23,81 @@ function initSetUp() {
 
 
 
-function backspace() {
-    if(isEvalutaed) return;
-  expr=expr.slice(0,-1);
-  scr_exp.value = expr;
-}
 
-
-function evaluate() {
-  if (!expr) return;
-  try{
-  let result = String(eval(expr));
-  scr_out.value =result;
-  expr = result;
-  isEvalutaed = true;
-  }
-  catch(e)
-  {
-    alert("Error occur ",e);
-  }
-}
-
-// utils
-function isNumber(value) {
-  return /^[0-9.]$/.test(value);
-}
-function isOperator(value) {
-  return ["+", "-", "*", "/"].includes(value);
-}
-
-function Delete() {
-  scr_exp.value = "";
-  expr = "";
-  scr_out.value = "";
-  isEvalutaed = false;
-}
 
 
 
 //event handler section start
 document.addEventListener("DOMContentLoaded", initSetUp);
 
+// web click  
 document.getElementById("button-area").addEventListener("click", function (e) {
-     const btn=e.target.closest("button");
-     if(!btn) return;
-    // console.log("clicked:",btn.value);
- if (isNumber(btn.value) || isOperator(btn.value)) {
-    e.preventDefault();
-    handleEvent(btn.value);
-    return;
-} 
 
-  if(!expr) return;
-  
-  if (btn.value == "Delete") {
-    
-    Delete();
-  } else if (btn.value == "Enter") {
-    evaluate();
-  } else if (btn.value == "Backspace") {
-    backspace();
+  const btn = e.target.closest("button");
+  if (!btn) return;
+
+  const value = btn.value;
+    // console.log("clicked:",btn.value);
+  if (isNumber(value) || isOperator(value) || value === ".") {
+    calc.handleInput(value);
+    scr_exp.value = calc.expression;
+    scr_out.value=calc.result;
+    return;
   }
-  
+
+  if (value === "Enter") {
+    scr_out.value=calc.evaluate();
+    history.add(scr_exp.value + "=" + calc.result);
+
+  } else if (value === "Delete") {
+    calc.clear();
+    scr_exp.value = "";
+    scr_out.value = "";
+  } else if (value === "Backspace") {
+    calc.backspace();
+    scr_exp.value = calc.expression;
+  }
 });
 
+//for pc keyboard
+ document.addEventListener("keydown", function (e) {
 
-document.addEventListener("keydown", function (e) {
-  if (isNumber(e.key) || isOperator(e.key)) {
+  const key = e.key;
+
+  // Numbers, operators, decimal
+  if (isNumber(key) || isOperator(key) || key === ".") {
     e.preventDefault();
-    handleEvent(e.key);
+    calc.handleInput(key);
+    scr_exp.value = calc.expression;
+    scr_out.value=calc.result;
     return;
-} 
-
-  if(!expr) return;
-  
-  if (e.key == "Delete") {
-    
-    Delete();
-  } else if (e.key == "Enter") {
-    evaluate();
-  } else if (e.key == "Backspace") {
-    backspace();
   }
-  
+
+  // Evaluate
+  if (key === "Enter") {
+    e.preventDefault();
+    scr_out.value=calc.evaluate();
+    history.add(scr_exp.value + "=" + calc.result);
+    return;
+  }
+
+  // Backspace
+  if (key === "Backspace") {
+    e.preventDefault();
+    calc.backspace();
+    scr_exp.value = calc.expression;
+    return;
+  }
+
+  // Clear
+  if (key === "Delete") {
+    e.preventDefault();
+    calc.clear();
+    scr_exp.value = "";
+    scr_out.value = "";
+    return;
+  }
+
 });
 //event handler end
-
-//actual logic
-//=================================================================================================
-function handleEvent(value) {
-//   console.log(value);
-
-  if (isEvalutaed) 
-    {
-        console.log("come after eval");
-        if (value == ".") {
-            //reset screen and add "0." to the screen
-            console.log("here checking ...")
-            expr ="0";
-            scr_out.value = "";
-            expr += value;
-            scr_exp.value = expr;
-        }
-        else if (isNumber(value)) {
-            //reset input screen if number after evalution
-            // console.log("inside number",value);
-            expr = value;
-            scr_out.value = "";
-            scr_exp.value = expr;
-        } 
-        else if (isOperator(value)) {
-            //append operator to previous output 
-            expr = scr_out.value;
-            scr_out.value = "";
-            expr += value;
-            scr_exp.value = expr;
-        } 
-
-        isEvalutaed = false;
-
-    } 
-  
-  else 
-    {
-        //not evaluted stat
-        if (value == ".")
-         {
-            if(!expr){
-                expr ="0.";
-                scr_exp.value = expr;
-                return;
-            } 
-            else{
-            let input = expr.split(/[\+\-\*\/]/);
-            let curr_value = input[input.length - 1];
-            if (curr_value.includes(".")) return
-            
-            
-            }
-        }
-        if(!expr && isOperator(value)) return;
-
-        //if operator check before appending that last was operator or not
-        let earray=expr.split("");
-       
-        if(isOperator(earray[earray.length - 1]) && isOperator(value))
-        {
-        //    handle this case >>  "1+"  (append new operator * ) -> "1 + * " ,it handle this "1 +" (click  *)   so now -> " 1 * "  
-            earray.pop();
-            // console.log("poped");
-            expr=earray.join("");
-
-        }
-//common logic
-        
-
-        expr += value;
-        scr_exp.value = expr;
-    }
-}
-
 
