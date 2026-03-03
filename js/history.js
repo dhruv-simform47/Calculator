@@ -1,13 +1,16 @@
+import { renderhistory } from "./ui.js";
+
 export function createHistory() {
   let history = JSON.parse(localStorage.getItem("history")) || [];
 
   function save() {
     localStorage.setItem("history", JSON.stringify(history));
+    // console.log("current array",get());
   }
 
   return {
     add(entry) {
-      history.push(entry);
+      history.unshift(entry);
       save();
     },
     get() {
@@ -16,6 +19,7 @@ export function createHistory() {
     clear() {
       history = [];
       save();
+      renderhistory(this);
     }
   };
 }

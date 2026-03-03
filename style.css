@@ -1,7 +1,66 @@
     * {
         box-sizing: border-box;
     }
+    body{
+    background-color: #00000085;
 
+    }
+    .history
+    {
+    float:right;
+    width:30%;
+    background-color: #bcd5da;    
+    border:2px dashed grey;   
+    }
+    .history-title
+    {
+        text-align: center;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        
+    }
+    #history-body
+    {
+        width:90%;
+        display: flex;
+        flex-direction: column;
+       
+    }
+    #history-body tr
+    {
+        background-color: whitesmoke;
+        padding:1px;
+        margin: 1px;
+        height:40px;
+        width: 90%;
+        margin: auto;
+        border: 1px solid rgb(175, 175, 175);
+    }
+    #clearHistory
+    {
+        padding: 5px;
+        background-color: #237e90;
+        color: white;
+        border: 2px solid white;
+        border-radius: 5px;
+        margin:10px 0 0 20px;
+        outline: 1px solid black;
+        cursor: pointer;
+    }
+    #clearHistory:hover
+    {
+        background-color: rgb(3, 59, 59);
+    }
+
+    #btnTheme
+    {
+        padding: 5px;
+        background-color: #000000;
+        color: white;
+        border: 2px solid white;
+        border-radius: 5px;
+        margin:10px 0 0 20px;
+        cursor: pointer;
+    }
     .calculator {
         height: 70vh;
         width: 350px;
@@ -53,7 +112,6 @@
     }
 
     .button-area div {
-        /* border: 1px solid grey; */
         display: flex;
         flex: 1;
     }
@@ -106,3 +164,96 @@
         color: white;
     }
    
+
+    /* LIGHT MODE  */
+
+    /* ================= LIGHT MODE ================= */
+
+.light-mode {
+    background-color: #f4f6f9;
+}
+
+/* History Panel */
+.light-mode .history {
+    background-color: #ffffff;
+    border: 2px solid #d0d7de;
+}
+
+.light-mode #history-body tr {
+    background-color: #f8fafc;
+    border: 1px solid #d0d7de;
+}
+
+/* Clear History Button */
+.light-mode #clearHistory {
+    background-color: #4a90e2;
+    color: white;
+    border: 2px solid #ffffff;
+    outline: 1px solid #d0d7de;
+}
+
+.light-mode #clearHistory:hover {
+    background-color: #2f6fb3;
+}
+
+/* Calculator Body */
+.light-mode .calculator {
+    background-color: #ffffff;
+    outline: 2px solid #000000;
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.616);
+}
+.light-mode .screenDiv
+{
+   border: 1px solid black; 
+}
+/* Screen */
+.light-mode #screenExpression,
+.light-mode #screenOutput {
+    background-color: #f1f3f6;
+    color: #1f2933;
+    
+}
+
+/* Buttons */
+.light-mode .row button {
+    background-color: #e6edf3;
+    color: #1f2933;
+    border: 1px solid #d0d7de;
+}
+
+.light-mode .row button:hover {
+    outline: 2px solid #4a90e2;
+}
+
+/* Arithmetic buttons */
+.light-mode .row .arith {
+    background-color: #d6ecff;
+    color: #003366;
+}
+
+.light-mode .row .arith:hover {
+    outline: 2px solid #4a90e2;
+}
+
+/* Number buttons */
+.light-mode .num {
+    background-color: #ffffff;
+    color: #1f2933;
+    font-weight: bold;
+}
+
+/* Special color classes override */
+.light-mode .black {
+    background-color: #1f2933;
+    color: white;
+}
+
+.light-mode .naviBlue {
+    background-color: #4a90e2;
+    color: white;
+}
+
+.light-mode .lightBlue {
+    background-color: #6bb6ff;
+    color: white;
+}

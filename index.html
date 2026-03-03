@@ -14,11 +14,20 @@
 
 
 <body>
+<div class="history">
+    <button id="clearHistory">Clear All</button>
+    <button id="btnTheme">Light</button>
+    <h3 class="history-title">history</h3>
+    <table id="history-body">
+
+    </table>
+</div>
+    
 
 
     <div class="calculator">
         <div class="screenDiv">
-           <div class="expression"> <input type="text" name="screen"   id="screenExpression" ></div>
+           <div class="expression"> <input type="text" name="screen"   id="screenExpression" readonly></div>
             <div class="output"><input type="text" name="screen" readonly id="screenOutput" ></div>
         </div>
         <div class="button-area" id="button-area">
@@ -26,24 +35,24 @@
                 <button class="btncalc naviBlue  bold" value="DEG">
                     DEG
                 </button>
-                <button class="btncalc naviBlue bold" value="F-E">
+                <button class="btncalc naviBlue bold" value="f-e">
                     F-E
                 </button> 
             </div>
             <div class="row row2">
-                <button class="btncalc lightBlue" value="MC">
+                <button class="btncalc lightBlue" value="mc">
                     MC
                 </button>
-                <button class="btncalc lightBlue" value="MR">
+                <button class="btncalc lightBlue" value="mr">
                     MR
                 </button>
-                <button class="btncalc lightBlue" value="M+">
+                <button class="btncalc lightBlue" value="m+">
                     M+
                 </button>
-                <button class="btncalc lightBlue" value="M-">
+                <button class="btncalc lightBlue" value="m-">
                     M-
                 </button>
-                <button class="btncalc lightBlue" value="MS">
+                <button class="btncalc lightBlue" value="ms">
                     MS
                 </button>
              </div>
@@ -123,7 +132,7 @@
                 <button class="btncalc lightBlue" value=")">
                     &rpar;
                 </button>
-                <button class="btncalc lightBlue" value="factorial">
+                <button class="btncalc lightBlue" value="!">
                     n! 
                 </button>
                 <button class="btncalc arith" value="/">
@@ -201,6 +210,7 @@
             
         </div>
     </div>
+
 
 
 

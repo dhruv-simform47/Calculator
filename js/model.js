@@ -7,6 +7,7 @@ export class Calculator {
     this.expression = "";
     this.result = "";
     this.isEvaluated = false;
+    this.memory="";
   }
 
   append(value) {
@@ -14,14 +15,67 @@ export class Calculator {
   }
 
   backspace() {
+     
+    
     if (this.isEvaluated) return;
     this.expression = this.expression.slice(0, -1);
+
+
   }
   clear() {
     this.expression = "";
     this.result = "";
     this.isEvaluated = false;
   }
+
+
+  F_E() {
+    this.expression=parseFloat(this.expression).toExponential().toString();
+    console.log("inside fe");
+    console.log(this.expression);
+
+  }
+
+  memoryClr() {
+      this.memory = "";
+    }
+    memoryRec() {
+      return this.memory;
+    }
+    memoryAdd() {
+      let currValue = eval(this.expression) || 0;
+      this.memory += parseFloat(currValue);
+      this.expression=this.memory.toString();
+    }
+    memorySub() {
+      let currValue = eval(this.ex) || 0;
+      this.memory -= parseFloat(currValue);
+      this.expression=this.memory.toString();
+    }
+    memorySave() {
+   
+      if (this.expression === "") return;
+      try {
+        const currentValue = eval(this.expression);
+        this.memory = parseFloat(currentValue);
+      
+       if(currentValue==0){
+        this.memory="";
+        console.log(currentValue);
+        
+       }
+        this.expression = "";
+      } catch (e) {
+        this.expression = "Error";
+      }
+    }
+  
+  
+ factorialRecursive(n) {
+  if (n === 0 || n === 1) return 1;
+  return n * this.factorialRecursive(n - 1);
+}
+// console.log(factorialRecursive(5)); // 120
 
   evaluate() {
     if (!this.expression) return;
@@ -43,44 +97,46 @@ export class Calculator {
     if (!this.expression) return;
 
     try {
-      let value = Number(this.expression);
+      let value = Number(eval(this.expression));
+      
+      
       let result;
       console.log("Applying function:", name, "to value:", value);
 
       switch (name) {
         case "sqrt":
           if (value < 0) throw new Error("InvalidInput");
-          result = Math.sqrt(value);
+          result = Math.sqrt(value).toFixed(2);
           this.expression = `sqrt(${value})`;
           break;
 
         case "sin":
-          result = Math.sin(value * Math.PI / 180);
+          result = Math.sin(value * Math.PI / 180).toFixed(2);
           this.expression = `sin(${value})`;
 
           break;
 
         case "cos":
-          result = Math.cos(value * Math.PI / 180);
+          result = Math.cos(value * Math.PI / 180).toFixed(2);
           this.expression = `cos(${value})`;
           break;
 
         case "tan":
-          result = Math.tan(value * Math.PI / 180);
+          result = Math.tan(value * Math.PI / 180).toFixed(2);
           this.expression = `tan(${value})`;
 
           break;
 
         case "log":
           if (value <= 0) throw new Error("InvalidInput");
-          result = Math.log10(value);
+          result = Math.log10(value).toFixed(2);
           this.expression = `log10(${value})`;
 
           break;
 
         case "ln":
           if (value <= 0) throw new Error("InvalidInput");
-          result = Math.log(value);
+          result = Math.log(value).toFixed(2);
           this.expression = `log(${value})`;
 
           break;
@@ -89,10 +145,19 @@ export class Calculator {
           result = Math.abs(value);
           this.expression = `abs(${value})`;
           break;
+        case "floor":
+          result = Math.floor(value);
+          this.expression = `floor(${value})`;
+          break;
+        case "ceil":
+          result = Math.ceil(value);
+          this.expression = `ceil(${value})`;
+          break;  
+        
 
       }
 
-      this.result = String(result);
+      this.result = (result)?String(result):"";
       this.isEvaluated = true;
       this.error = null;
 

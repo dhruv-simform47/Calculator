@@ -1,4 +1,6 @@
 
+
+
 export function toggleTrigno()
 {
     const toggle=document.getElementById("trignoFun");
@@ -26,3 +28,24 @@ export function toggleFunc()
     }
 }
 
+export function renderhistory(history)
+{
+    const historyBody=document.getElementById("history-body");
+    let historyList=history.get();
+    
+
+    historyBody.innerHTML="";
+    historyList.forEach(element => {
+        const historyRow=document.createElement("tr");
+        historyRow.innerHTML=`<td>${element} </td>`
+         historyBody.appendChild(historyRow);
+
+         
+    });
+   
+
+  
+    
+ 
+ 
+}
