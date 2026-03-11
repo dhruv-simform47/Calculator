@@ -5,7 +5,6 @@ export function createHistory() {
 
   function save() {
     localStorage.setItem("history", JSON.stringify(history));
-    // console.log("current array",get());
   }
 
   return {
@@ -20,6 +19,6 @@ export function createHistory() {
       history = [];
       save();
       renderhistory(this);
-    }
+    },
   };
 }

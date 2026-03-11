@@ -1,13 +1,11 @@
-
 import { isNumber, isOperator } from "./utils.js";
-
 
 export class Calculator {
   constructor() {
     this.expression = "";
     this.result = "";
     this.isEvaluated = false;
-    this.memory="";
+    this.memory = "";
   }
 
   append(value) {
@@ -15,12 +13,8 @@ export class Calculator {
   }
 
   backspace() {
-     
-    
     if (this.isEvaluated) return;
     this.expression = this.expression.slice(0, -1);
-
-
   }
   clear() {
     this.expression = "";
@@ -28,63 +22,55 @@ export class Calculator {
     this.isEvaluated = false;
   }
 
-
-  F_E() {
-    this.expression=parseFloat(this.expression).toExponential().toString();
+  toggleScientificNotation() {
+    this.expression = parseFloat(this.expression).toExponential().toString();
     console.log("inside fe");
     console.log(this.expression);
-
   }
 
   memoryClr() {
-      this.memory = "";
-    }
-    memoryRec() {
-      return this.memory;
-    }
-    memoryAdd() {
-      let currValue = eval(this.expression) || 0;
-      this.memory += parseFloat(currValue);
-      this.expression=this.memory.toString();
-    }
-    memorySub() {
-      let currValue = eval(this.ex) || 0;
-      this.memory -= parseFloat(currValue);
-      this.expression=this.memory.toString();
-    }
-    memorySave() {
-   
-      if (this.expression === "") return;
-      try {
-        const currentValue = eval(this.expression);
-        this.memory = parseFloat(currentValue);
-      
-       if(currentValue==0){
-        this.memory="";
+    this.memory = "";
+  }
+  memoryRec() {
+    return this.memory;
+  }
+  memoryAdd() {
+    let currValue = eval(this.expression) || 0;
+    this.memory += parseFloat(currValue);
+    this.expression = this.memory.toString();
+  }
+  memorySub() {
+    let currValue = eval(this.ex) || 0;
+    this.memory -= parseFloat(currValue);
+    this.expression = this.memory.toString();
+  }
+  memorySave() {
+    if (this.expression === "") return;
+    try {
+      const currentValue = eval(this.expression);
+      this.memory = parseFloat(currentValue);
+      if (currentValue == 0) {
+        this.memory = "";
         console.log(currentValue);
-        
-       }
-        this.expression = "";
-      } catch (e) {
-        this.expression = "Error";
       }
+      this.expression = "";
+    } catch (e) {
+      this.expression = "Error";
     }
-  
-  
- factorialRecursive(n) {
-  if (n === 0 || n === 1) return 1;
-  return n * this.factorialRecursive(n - 1);
-}
-// console.log(factorialRecursive(5)); // 120
+  }
+
+  factorialRecursive(n) {
+    if (n === 0 || n === 1) return 1;
+    return n * this.factorialRecursive(n - 1);
+  }
+
 
   evaluate() {
     if (!this.expression) return;
-
     try {
       this.result = String(eval(this.expression));
       this.expression = this.result;
       this.isEvaluated = true;
-
       return this.result;
     } catch {
       this.clear();
@@ -93,13 +79,11 @@ export class Calculator {
   }
 
   applyFunction(name) {
-
     if (!this.expression) return;
 
     try {
       let value = Number(eval(this.expression));
-      
-      
+
       let result;
       console.log("Applying function:", name, "to value:", value);
 
@@ -111,34 +95,30 @@ export class Calculator {
           break;
 
         case "sin":
-          result = Math.sin(value * Math.PI / 180).toFixed(2);
+          result = Math.sin((value * Math.PI) / 180).toFixed(2);
           this.expression = `sin(${value})`;
-
           break;
 
         case "cos":
-          result = Math.cos(value * Math.PI / 180).toFixed(2);
+          result = Math.cos((value * Math.PI) / 180).toFixed(2);
           this.expression = `cos(${value})`;
           break;
 
         case "tan":
-          result = Math.tan(value * Math.PI / 180).toFixed(2);
+          result = Math.tan((value * Math.PI) / 180).toFixed(2);
           this.expression = `tan(${value})`;
-
           break;
 
         case "log":
           if (value <= 0) throw new Error("InvalidInput");
           result = Math.log10(value).toFixed(2);
           this.expression = `log10(${value})`;
-
           break;
 
         case "ln":
           if (value <= 0) throw new Error("InvalidInput");
           result = Math.log(value).toFixed(2);
           this.expression = `log(${value})`;
-
           break;
 
         case "abs":
@@ -152,15 +132,12 @@ export class Calculator {
         case "ceil":
           result = Math.ceil(value);
           this.expression = `ceil(${value})`;
-          break;  
-        
-
+          break;
       }
 
-      this.result = (result)?String(result):"";
+      this.result = result ? String(result) : "";
       this.isEvaluated = true;
       this.error = null;
-
     } catch (err) {
       console.log("Error applying function:", err.message);
       this.error = { type: err.message };
@@ -168,25 +145,17 @@ export class Calculator {
     }
   }
 
-
   handleInput(value) {
-
-   
     if (this.isEvaluated) {
-
       if (isNumber(value)) {
         this.expression = value;
-      }
-      else if (isOperator(value)) {
+      } else if (isOperator(value)) {
         this.expression = this.expression + value;
-      }
-      else if (value === ".") {
+      } else if (value === ".") {
         this.expression = "0.";
       }
-
       this.isEvaluated = false;
       this.result = "";
-
       return;
     }
 
@@ -195,20 +164,16 @@ export class Calculator {
 
     //decimal handling
     if (value === ".") {
-
       // Empty expression → 0.
       if (!this.expression) {
         this.append("0.");
-
         return;
       }
-
       const lastChar = this.expression.slice(-1);
 
       // After operator → 0.
       if (isOperator(lastChar)) {
         this.append("0.");
-
         return;
       }
 
@@ -218,7 +183,6 @@ export class Calculator {
       if (current.includes(".")) return;
     }
 
-
     // prevent double operator
     const lastChar = this.expression.slice(-1);
     if (isOperator(lastChar) && isOperator(value)) {
@@ -226,8 +190,6 @@ export class Calculator {
     }
 
     //append values
-
     this.append(value);
-
   }
 }

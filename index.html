@@ -1,223 +1,131 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://cdn-icons-png.flaticon.com/512/10310/10310245.png"
+    />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Calculator</title>
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/10310/10310245.png">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="style.css">
-</head>
-
-
-
-<body>
-<div class="history">
-    <button id="clearHistory">Clear All</button>
-    <button id="btnTheme">Light</button>
-    <h3 class="history-title">history</h3>
-    <table id="history-body">
-
-    </table>
-</div>
-    
-
-
-    <div class="calculator">
-        <div class="screenDiv">
-           <div class="expression"> <input type="text" name="screen"   id="screenExpression" readonly></div>
-            <div class="output"><input type="text" name="screen" readonly id="screenOutput" ></div>
-        </div>
-        <div class="button-area" id="button-area">
-            <div class="row row1">
-                <button class="btncalc naviBlue  bold" value="DEG">
-                    DEG
-                </button>
-                <button class="btncalc naviBlue bold" value="f-e">
-                    F-E
-                </button> 
-            </div>
-            <div class="row row2">
-                <button class="btncalc lightBlue" value="mc">
-                    MC
-                </button>
-                <button class="btncalc lightBlue" value="mr">
-                    MR
-                </button>
-                <button class="btncalc lightBlue" value="m+">
-                    M+
-                </button>
-                <button class="btncalc lightBlue" value="m-">
-                    M-
-                </button>
-                <button class="btncalc lightBlue" value="ms">
-                    MS
-                </button>
-             </div>
-            <div class="row row1">
-                <button class="btncalc naviBlue" id="toggleTrigno">
-                    &#9727;	Trignometry
-                </button>
-                <button class="btncalc naviBlue"id="toggleFunc" >
-                    <span><i class="fa-solid fa-florin-sign"></i></span> Function
-                </button> 
-            </div>
-             <div class="row" id="trignoFun">
-                <button class="btncalc" value="sin" >
-                    sin
-                </button>
-                <button class="btncalc" value="cos" >
-                    cos
-                </button>
-                <button class="btncalc" value="tan" >
-                    tan
-                </button>
-               
-             </div>
-              <div class="row" id="fun-options">
-                <button class="btncalc" value="rand" >
-                    rand
-                </button>
-                <button class="btncalc" value="floor" >
-                   &lfloor;X&rfloor;
-                </button>
-                <button class="btncalc" value="ceil">
-                    &lceil;X&rceil;
-                </button>
-               
-             </div>
-            <div class="row row2">
-                <button class="btncalc lightBlue" value="2nd">
-                    2<sup>nd</sup>
-                </button>
-                <button class="btncalc lightBlue" value="pi">
-                    &pi;
-                </button>
-                <button class="btncalc lightBlue" value="e">
-                    e
-                </button>
-                <button class="btncalc lightBlue" value="Delete">
-                    C
-                </button>
-                <button class="btncalc lightBlue" value="Backspace">
-                    <i class="fa-solid fa-delete-left"></i>
-                </button>
-             </div>
-             <div class="row row2">
-                <button class="btncalc lightBlue" value="x^2">
-                    X<sup>2</sup>
-                </button>
-                <button class="btncalc lightBlue" value="1/x">
-                    1/<i>x</i>
-                </button>
-                <button class="btncalc lightBlue" value="abs">
-                    |x|
-                </button>
-                <button class="btncalc lightBlue" value="exp">
-                    exp
-                </button>
-                <button class="btncalc lightBlue" value="mod">
-                    mod
-                </button>
-             </div>
-             <div class="row row2">
-                <button class="btncalc lightBlue" value="sqrt">
-                    <sup>2</sup>&radic;x
-                </button>
-                <button class="btncalc lightBlue" value="(">
-                    &lpar;
-                </button>
-                <button class="btncalc lightBlue" value=")">
-                    &rpar;
-                </button>
-                <button class="btncalc lightBlue" value="!">
-                    n! 
-                </button>
-                <button class="btncalc arith" value="/">
-                    &divide;
-                </button>
-             </div>
-             <div class="row row2">
-                <button class="btncalc lightBlue" value="^">
-                    x<sup><i>y</i></sup>
-                </button>
-                <button class="btncalc num" value="7">
-                    7
-                </button>
-                <button class="btncalc num" value="8">
-                    8
-                </button>
-                <button class="btncalc num" value="9">
-                    9
-                </button>
-                <button class="btncalc arith" name="mul" value="*">
-                    &times;
-                </button>
-             </div>
-             <div class="row row2">
-                <button class="btncalc lightBlue" value="pow-10">
-                    10<sup>x</sup>
-                </button>
-                <button class="btncalc num" value="4">
-                    4
-                </button>
-                <button class="btncalc num" value="5">
-                    5
-                </button>
-                <button class="btncalc num" value="6">
-                    6
-                </button>
-                <button class="btncalc arith" value="-">
-                    -
-                </button>
-             </div>
-             <div class="row row2">
-                <button class="btncalc lightBlue" value="log">
-                    log
-                </button>
-                <button class="btncalc num" value="1">
-                    1
-                </button>
-                <button class="btncalc num" value="2">
-                    2
-                </button>
-                <button class="btncalc num" value="3">
-                    3
-                </button>
-                <button class="btncalc arith" value="+">
-                    +
-                </button>
-             </div>
-             <div class="row row2">
-                <button class="btncalc lightBlue" value="ln">
-                    ln
-                </button>
-                <button class="btncalc lightBlue" value="+/-">
-                    <b><sup>+</sup>/<sub>-</sub></b>
-                </button>
-                <button class="btncalc num" value="0">
-                    0
-                </button>
-                <button class="btncalc lightBlue" value=".">
-                    . 
-                </button>
-                <button class="btncalc equal arith" value="Enter">
-                    =
-                </button>
-             </div>
-            
-        </div>
+  <body>
+    <div class="history">
+      <button id="clearHistory">Clear All</button>
+      <button id="btnTheme">Light</button>
+      <h3 class="historyTitle">history</h3>
+      <table id="historyBody"></table>
     </div>
 
+    <div class="calculator">
+      <div class="screenDiv">
+        <div class="expression">
+          <input type="text" name="screen" id="screenExpression" readonly />
+        </div>
+        <div class="output">
+          <input type="text" name="screen" readonly id="screenOutput" />
+        </div>
+      </div>
+      <div class="buttonArea" id="buttonArea">
+        <div class="row row1">
+          <button class="btncalc naviBlue bold" value="DEG">DEG</button>
+          <button class="btncalc naviBlue bold" value="f-e">F-E</button>
+        </div>
+        <div class="row row2">
+          <button class="btncalc lightBlue" value="mc">MC</button>
+          <button class="btncalc lightBlue" value="mr">MR</button>
+          <button class="btncalc lightBlue" value="m+">M+</button>
+          <button class="btncalc lightBlue" value="m-">M-</button>
+          <button class="btncalc lightBlue" value="ms">MS</button>
+        </div>
+        <div class="row row1">
+          <button class="btncalc naviBlue" id="toggleTrigno">
+            &#9727; Trignometry
+          </button>
+          <button class="btncalc naviBlue" id="toggleFunc">
+            <span><i class="fa-solid fa-florin-sign"></i></span> Function
+          </button>
+        </div>
+        <div class="row" id="trignoFun">
+          <button class="btncalc" value="sin">sin</button>
+          <button class="btncalc" value="cos">cos</button>
+          <button class="btncalc" value="tan">tan</button>
+        </div>
+        <div class="row" id="funOptions">
+          <button class="btncalc" value="rand">rand</button>
+          <button class="btncalc" value="floor">&lfloor;X&rfloor;</button>
+          <button class="btncalc" value="ceil">&lceil;X&rceil;</button>
+        </div>
+        <div class="row row2">
+          <button class="btncalc lightBlue" value="2nd">2<sup>nd</sup></button>
+          <button class="btncalc lightBlue" value="pi">&pi;</button>
+          <button class="btncalc lightBlue" value="e">e</button>
+          <button class="btncalc lightBlue" value="Delete">C</button>
+          <button class="btncalc lightBlue" value="Backspace">
+            <i class="fa-solid fa-delete-left"></i>
+          </button>
+        </div>
+        <div class="row row2">
+          <button class="btncalc lightBlue" value="x^2">X<sup>2</sup></button>
+          <button class="btncalc lightBlue" value="1/x">1/<i>x</i></button>
+          <button class="btncalc lightBlue" value="abs">|x|</button>
+          <button class="btncalc lightBlue" value="exp">exp</button>
+          <button class="btncalc lightBlue" value="mod">mod</button>
+        </div>
+        <div class="row row2">
+          <button class="btncalc lightBlue" value="sqrt">
+            <sup>2</sup>&radic;x
+          </button>
+          <button class="btncalc lightBlue" value="(">&lpar;</button>
+          <button class="btncalc lightBlue" value=")">&rpar;</button>
+          <button class="btncalc lightBlue" value="!">n!</button>
+          <button class="btncalc arith" value="/">&divide;</button>
+        </div>
+        <div class="row row2">
+          <button class="btncalc lightBlue" value="^">
+            x<sup><i>y</i></sup>
+          </button>
+          <button class="btncalc num" value="7">7</button>
+          <button class="btncalc num" value="8">8</button>
+          <button class="btncalc num" value="9">9</button>
+          <button class="btncalc arith" name="mul" value="*">&times;</button>
+        </div>
+        <div class="row row2">
+          <button class="btncalc lightBlue" value="pow-10">
+            10<sup>x</sup>
+          </button>
+          <button class="btncalc num" value="4">4</button>
+          <button class="btncalc num" value="5">5</button>
+          <button class="btncalc num" value="6">6</button>
+          <button class="btncalc arith" value="-">-</button>
+        </div>
+        <div class="row row2">
+          <button class="btncalc lightBlue" value="log">log</button>
+          <button class="btncalc num" value="1">1</button>
+          <button class="btncalc num" value="2">2</button>
+          <button class="btncalc num" value="3">3</button>
+          <button class="btncalc arith" value="+">+</button>
+        </div>
+        <div class="row row2">
+          <button class="btncalc lightBlue" value="ln">ln</button>
+          <button class="btncalc lightBlue" value="+/-">
+            <b><sup>+</sup>/<sub>-</sub></b>
+          </button>
+          <button class="btncalc num" value="0">0</button>
+          <button class="btncalc lightBlue" value=".">.</button>
+          <button class="btncalc equal arith" value="Enter">=</button>
+        </div>
+      </div>
+    </div>
 
-
-
-
-<script type="module" src="js/main.js" defer></script>
-
-
-</body>
-
+    <script type="module" src="js/main.js" defer></script>
+  </body>
 </html>
